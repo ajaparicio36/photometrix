@@ -1,0 +1,16 @@
+*
+!Dockerfile
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!app/
+!app/package.json
+!server/
+!server/**
+server/node_modules
+server/dist
+server/coverage
+server/.env*
+server/test
+server/**/*.spec.ts
+server/*.tsbuildinfo

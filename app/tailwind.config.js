@@ -1,0 +1,45 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{ts,tsx}'],
+  presets: [require('nativewind/preset')],
+  theme: {
+    extend: {
+      colors: {
+        canvas: '#FAF8FF',
+        surface: '#FFFFFF',
+        subtle: '#F2F3FF',
+        selected: '#E2E7FF',
+        ink: '#131B2E',
+        muted: '#3E4850',
+        line: '#BEC8D2',
+        action: '#283044',
+        lighting: '#FEA619',
+        amber: '#855300',
+        pass: '#006C49',
+        'pass-bg': '#ECFDF5',
+        warning: '#9A3412',
+        'warning-bg': '#FFF7ED',
+        error: '#BA1A1A',
+        'error-bg': '#FFDAD6',
+        link: '#006591',
+      },
+      fontFamily: {
+        sans: ['Inter_400Regular'],
+        'inter-medium': ['Inter_500Medium'],
+        'inter-semibold': ['Inter_600SemiBold'],
+        'inter-bold': ['Inter_700Bold'],
+        mono: ['JetBrainsMono_400Regular'],
+        'mono-bold': ['JetBrainsMono_700Bold'],
+      },
+      fontSize: {
+        body: ['16px', '22px'],
+        small: ['13px', '18px'],
+        title: ['24px', '30px'],
+        section: ['20px', '26px'],
+        value: ['32px', '38px'],
+      },
+      borderRadius: { card: '12px', control: '8px' },
+    },
+  },
+  plugins: [],
+};

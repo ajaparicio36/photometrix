@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<meta content="mobile_tab" name="shell-type">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            slate: {
+              50: '#F8FAFC',
+              100: '#F1F5F9',
+              200: '#E2E8F0',
+              300: '#CBD5E1',
+              400: '#94A3B8',
+              500: '#64748B',
+              600: '#475569',
+              700: '#334155',
+              800: '#1E293B',
+              900: '#0F172A',
+              950: '#020617',
+            },
+            amber: {
+              500: '#F59E0B',
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+            },
+            cyan: {
+              500: '#0EA5E9',
+              50: '#F0F9FF',
+              100: '#E0F2FE',
+            },
+            emerald: {
+              500: '#10B981',
+              50: '#ECFDF5',
+              100: '#D1FAE5',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        background-color: #F8FAFC;
+        color: #0F172A;
+      }
+      body {
+        overscroll-behavior: none;
+        min-height: max(884px, 100dvh);
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 flex flex-col min-h-screen antialiased select-none">
+<!-- Top App Navigation / Status Bar -->
+<header class="fixed top-0 w-full z-40 bg-slate-50/90 backdrop-blur-md border-b border-slate-200/80 pt-safe">
+<div class="h-14 px-4 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[19px]">sensors</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-bold text-[15px] tracking-tight text-slate-900 font-sans">Photometrix</span>
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-mono font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            LIVE
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 px-2 py-1 rounded-md bg-slate-100 border border-slate-200/60 font-mono text-[11px] font-semibold text-slate-600">
+<span class="material-symbols-outlined text-[14px] text-emerald-500">wifi_tethering</span>
+<span>MESH 2.4G</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-slate-200 flex items-center justify-center text-slate-700">
+<span class="material-symbols-outlined text-[16px]">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full px-4 pt-20 pb-28 max-w-md mx-auto flex flex-col gap-5">
+<!-- Header & Action Row -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+<span class="font-mono text-[11px] uppercase tracking-wider font-semibold text-slate-500">6 Telemetry Nodes Online</span>
+</div>
+<h1 class="text-2xl font-extrabold tracking-tight text-slate-900">Dashboard</h1>
+</div>
+<!-- Prominent circular '+' floating button (#1E293B) -->
+<button aria-label="Provision New Module" class="w-11 h-11 rounded-full bg-slate-800 hover:bg-slate-900 active:scale-95 text-white flex items-center justify-center shadow-lg shadow-slate-800/20 transition-transform">
+<span class="material-symbols-outlined text-[24px]">add</span>
+</button>
+</div>
+<!-- Glanceable Facility Benchmark Pill -->
+<div class="bg-white rounded-2xl border border-slate-200/80 p-3 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-mono text-[10px] uppercase font-bold text-slate-400 tracking-wider">Benchmark Target</span>
+<span class="font-semibold text-[13px] text-slate-900 truncate">Classroom Standard (300 lx • 22°C)</span>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 font-mono text-[11px] font-bold tracking-tight uppercase flex items-center gap-0.5 transition-colors shrink-0">
+<span>Change</span>
+<span class="material-symbols-outlined text-[15px]">expand_more</span>
+</button>
+</div>
+<!-- ROOM CONTAINERS (Minimalist Modular Containers) -->
+<!-- ROOM #1 CONTAINER -->
+<div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-3.5 flex flex-col gap-3">
+<!-- Container Header -->
+<div class="flex items-center justify-between pb-1 border-b border-slate-100">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+<span class="font-bold text-[14px] text-slate-900 tracking-tight">Room #1</span>
+<span class="text-slate-400 text-[12px] font-medium">• Classroom</span>
+</div>
+<span class="font-mono text-[10px] font-semibold text-slate-400 bg-slate-50 px-2 py-0.5 rounded border border-slate-200/60">NODE-A2-01</span>
+</div>
+<!-- Lighting Widget Card -->
+<div class="group bg-slate-50 hover:bg-slate-100/80 active:scale-[0.99] border border-slate-200/70 rounded-xl p-3 flex flex-col gap-2.5 cursor-pointer transition-all shadow-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<!-- Amber Glowing Bulb Badge -->
+<div class="w-7 h-7 rounded-lg bg-amber-100 text-amber-500 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<span class="font-mono text-[11px] uppercase tracking-wider font-semibold text-slate-600">Lighting</span>
+</div>
+<!-- Green checkmark icon badge & chevron -->
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-mono text-[10px] font-bold">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              PASS
+            </span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-700 group-hover:translate-x-0.5 transition-all">chevron_right</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-mono text-3xl font-extrabold tracking-tight text-slate-900">402</span>
+<span class="font-mono text-sm font-semibold text-slate-500">lx</span>
+</div>
+<span class="font-mono text-[11px] font-medium text-slate-500">+102 lx over 300 target</span>
+</div>
+<!-- Status Progress Bar -->
+<div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full transition-all duration-500" style="width: 82%;"></div>
+</div>
+</div>
+<!-- HVAC Widget Card -->
+<div class="group bg-slate-50 hover:bg-slate-100/80 active:scale-[0.99] border border-slate-200/70 rounded-xl p-3 flex flex-col gap-2.5 cursor-pointer transition-all shadow-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<!-- Cyan Thermometer/Fan Badge -->
+<div class="w-7 h-7 rounded-lg bg-cyan-100 text-cyan-500 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]">mode_fan</span>
+</div>
+<span class="font-mono text-[11px] uppercase tracking-wider font-semibold text-slate-600">HVAC</span>
+</div>
+<!-- Green active status dot & chevron -->
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-mono text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              ACTIVE
+            </span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-700 group-hover:translate-x-0.5 transition-all">chevron_right</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-mono text-3xl font-extrabold tracking-tight text-slate-900">22.4<span class="text-xl font-bold text-slate-500">°C</span></span>
+</div>
+<div class="flex items-center gap-3 font-mono text-[11px] font-medium text-slate-500">
+<span>RH: 48%</span>
+<span>•</span>
+<span>0.25 m/s</span>
+</div>
+</div>
+<!-- Metric Sub-bar -->
+<div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
+<div class="bg-cyan-500 h-full rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+</div>
+<!-- ROOM #2 CONTAINER -->
+<div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-3.5 flex flex-col gap-3">
+<!-- Container Header -->
+<div class="flex items-center justify-between pb-1 border-b border-slate-100">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+<span class="font-bold text-[14px] text-slate-900 tracking-tight">Room #2</span>
+<span class="text-slate-400 text-[12px] font-medium">• Lab</span>
+</div>
+<span class="font-mono text-[10px] font-semibold text-slate-400 bg-slate-50 px-2 py-0.5 rounded border border-slate-200/60">NODE-SCI-04</span>
+</div>
+<!-- Lighting Widget Card -->
+<div class="group bg-slate-50 hover:bg-slate-100/80 active:scale-[0.99] border border-slate-200/70 rounded-xl p-3 flex flex-col gap-2.5 cursor-pointer transition-all shadow-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<!-- Amber Glowing Bulb Badge -->
+<div class="w-7 h-7 rounded-lg bg-amber-100 text-amber-500 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<span class="font-mono text-[11px] uppercase tracking-wider font-semibold text-slate-600">Lighting</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-mono text-[10px] font-bold">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              OPTIMAL
+            </span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-700 group-hover:translate-x-0.5 transition-all">chevron_right</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-mono text-3xl font-extrabold tracking-tight text-slate-900">510</span>
+<span class="font-mono text-sm font-semibold text-slate-500">lx</span>
+</div>
+<span class="font-mono text-[11px] font-medium text-slate-500">Standard: 500 lx</span>
+</div>
+<div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+<!-- HVAC Widget Card -->
+<div class="group bg-slate-50 hover:bg-slate-100/80 active:scale-[0.99] border border-slate-200/70 rounded-xl p-3 flex flex-col gap-2.5 cursor-pointer transition-all shadow-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<!-- Cyan Thermometer/Fan Badge -->
+<div class="w-7 h-7 rounded-lg bg-cyan-100 text-cyan-500 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]">thermostat</span>
+</div>
+<span class="font-mono text-[11px] uppercase tracking-wider font-semibold text-slate-600">HVAC</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-mono text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              LAMINAR
+            </span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-700 group-hover:translate-x-0.5 transition-all">chevron_right</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-mono text-3xl font-extrabold tracking-tight text-slate-900">21.0<span class="text-xl font-bold text-slate-500">°C</span></span>
+</div>
+<div class="flex items-center gap-3 font-mono text-[11px] font-medium text-slate-500">
+<span>RH: 42%</span>
+<span>•</span>
+<span>6.2 ACH</span>
+</div>
+</div>
+<div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
+<div class="bg-cyan-500 h-full rounded-full" style="width: 70%;"></div>
+</div>
+</div>
+</div>
+<!-- ROOM #3 CONTAINER (Compact / Anomaly Alert) -->
+<div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-3.5 flex flex-col gap-3">
+<!-- Container Header -->
+<div class="flex items-center justify-between pb-1 border-b border-slate-100">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+<span class="font-bold text-[14px] text-slate-900 tracking-tight">Room #3</span>
+<span class="text-slate-400 text-[12px] font-medium">• Faculty Office</span>
+</div>
+<span class="font-mono text-[10px] font-semibold text-slate-400 bg-slate-50 px-2 py-0.5 rounded border border-slate-200/60">NODE-B1-09</span>
+</div>
+<!-- Lighting Widget Card -->
+<div class="group bg-slate-50 hover:bg-slate-100/80 active:scale-[0.99] border border-amber-200 rounded-xl p-3 flex flex-col gap-2.5 cursor-pointer transition-all shadow-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<span class="font-mono text-[11px] uppercase tracking-wider font-semibold text-slate-600">Lighting</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-mono text-[10px] font-bold">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+              LOW LUX
+            </span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-700 group-hover:translate-x-0.5 transition-all">chevron_right</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-mono text-3xl font-extrabold tracking-tight text-amber-600">280</span>
+<span class="font-mono text-sm font-semibold text-slate-500">lx</span>
+</div>
+<span class="font-mono text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/60">-20 lx deficit</span>
+</div>
+<div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 56%;"></div>
+</div>
+</div>
+<!-- HVAC Widget Card -->
+<div class="group bg-slate-50 hover:bg-slate-100/80 active:scale-[0.99] border border-slate-200/70 rounded-xl p-3 flex flex-col gap-2.5 cursor-pointer transition-all shadow-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-cyan-100 text-cyan-500 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]">thermostat</span>
+</div>
+<span class="font-mono text-[11px] uppercase tracking-wider font-semibold text-slate-600">HVAC</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-200 text-slate-700 font-mono text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]">eco</span>
+              ECO
+            </span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-700 group-hover:translate-x-0.5 transition-all">chevron_right</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-mono text-3xl font-extrabold tracking-tight text-slate-900">23.8<span class="text-xl font-bold text-slate-500">°C</span></span>
+</div>
+<div class="flex items-center gap-3 font-mono text-[11px] font-medium text-slate-500">
+<span>RH: 55%</span>
+</div>
+</div>
+<div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
+<div class="bg-cyan-500 h-full rounded-full" style="width: 60%;"></div>
+</div>
+</div>
+</div>
+<!-- Re-Zero Calibration Compact Banner -->
+<div class="mt-1 flex flex-col gap-2">
+<button class="w-full h-11 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white flex items-center justify-center gap-2 font-mono text-xs font-semibold shadow-sm transition-all">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Re-Zero Photodiode Baselines</span>
+</button>
+<div class="flex items-center justify-center gap-1.5 text-slate-400 font-mono text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span>NIST Traceable Calibration Active</span>
+</div>
+</div>
+</main>
+<!-- Persistent Bottom Tab Bar -->
+<nav class="fixed bottom-0 w-full z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 pb-safe">
+<div class="flex items-center justify-around h-16 max-w-md mx-auto px-2">
+<a class="flex flex-col items-center justify-center gap-1 min-w-[56px] text-slate-900" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-mono text-[10px] font-bold uppercase tracking-tight">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[56px] text-slate-400 hover:text-slate-700 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">meeting_room</span>
+<span class="font-mono text-[10px] font-medium uppercase tracking-tight">Rooms</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[56px] text-slate-400 hover:text-slate-700 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">fact_check</span>
+<span class="font-mono text-[10px] font-medium uppercase tracking-tight">Standard</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[56px] text-slate-400 hover:text-slate-700 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">insights</span>
+<span class="font-mono text-[10px] font-medium uppercase tracking-tight">Audit</span>
+</a>
+</div>
+</nav>
+</body></html>

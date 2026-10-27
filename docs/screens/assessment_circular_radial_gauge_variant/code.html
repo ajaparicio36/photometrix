@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<meta content="mobile_tab" name="shell-type">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] font-['Inter'] text-[#0F172A] flex flex-col min-h-screen antialiased selection:bg-emerald-100">
+<!-- Top Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#F8FAFC]/90 backdrop-blur-xl border-b border-[#E2E8F0] pt-safe">
+<div class="h-14 px-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button aria-label="Go back" class="w-9 h-9 rounded-lg bg-white border border-[#E2E8F0] flex items-center justify-center text-slate-700 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<h1 class="text-[17px] font-bold text-[#0F172A] tracking-tight">Assessment</h1>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+</span>
+<span class="font-['JetBrains_Mono'] text-[11px] font-semibold text-emerald-800 tracking-tight">Module #1 • Online</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex flex-col flex-1 px-4 pt-20 pb-24 gap-4">
+<!-- Benchmark Target Indicator Banner -->
+<div class="w-full bg-white border border-[#E2E8F0] rounded-xl px-3.5 py-2.5 flex items-center justify-between shadow-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-[18px]">verified</span>
+<span class="font-['JetBrains_Mono'] text-[11px] font-semibold tracking-wider uppercase text-slate-500">Benchmark Mode</span>
+</div>
+<span class="font-['JetBrains_Mono'] text-[12px] font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">IESNA Classroom • 300 lx</span>
+</div>
+<!-- Hero Visual: Radial Progress Gauge Card -->
+<section class="w-full bg-white border border-[#E2E8F0] rounded-2xl p-5 shadow-sm flex flex-col items-center relative overflow-hidden">
+<!-- Subtle top decorative gradient line -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-[#10B981] to-teal-500"></div>
+<!-- Radial Progress Ring Meter -->
+<div class="relative w-52 h-52 flex items-center justify-center my-2">
+<svg class="w-full h-full -rotate-90 transform" viewBox="0 0 160 160">
+<!-- Background track circle -->
+<circle cx="80" cy="80" fill="transparent" r="68" stroke="#E2E8F0" stroke-linecap="round" stroke-width="12"></circle>
+<!-- Calibrated threshold reference dot/arc -->
+<circle cx="80" cy="80" fill="transparent" r="68" stroke="#CBD5E1" stroke-dasharray="2 10" stroke-width="12"></circle>
+<!-- Progress Gauge: 402 lx / 500 lx max scale = ~80% -->
+<circle class="transition-all duration-700 ease-out" cx="80" cy="80" fill="transparent" r="68" stroke="#10B981" stroke-dasharray="427" stroke-dashoffset="85" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<!-- Center Readout -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-['JetBrains_Mono'] text-[34px] font-extrabold text-[#0F172A] tracking-tight leading-none">402</span>
+<span class="font-['JetBrains_Mono'] text-[14px] font-semibold text-slate-400 mt-0.5">lx</span>
+<span class="font-['JetBrains_Mono'] text-[10px] font-bold tracking-widest uppercase text-slate-400 mt-1">AVG ILLUMINANCE</span>
+<!-- Emerald PASSED badge -->
+<div class="mt-2 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500 text-white shadow-xs">
+<span class="material-symbols-outlined text-[14px] font-bold">check</span>
+<span class="font-['JetBrains_Mono'] text-[10px] font-extrabold tracking-wider">PASSED</span>
+</div>
+</div>
+</div>
+<!-- Benchmark Target Baseline Readout -->
+<div class="w-full pt-3 mt-1 border-t border-[#E2E8F0] flex items-center justify-between text-xs font-['JetBrains_Mono']">
+<span class="text-slate-400">Baseline Target: <strong class="text-slate-600 font-semibold">300 lx</strong></span>
+<span class="font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">+102 lx DELTA</span>
+</div>
+</section>
+<!-- Telemetry 3-Column Grid -->
+<section class="grid grid-cols-3 gap-2.5 w-full">
+<!-- Sensor 1 (S1) -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-3 flex flex-col gap-2 shadow-xs relative">
+<div class="flex items-center justify-between">
+<span class="font-['JetBrains_Mono'] text-[11px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">S1</span>
+<span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+</div>
+<div class="flex flex-col">
+<span class="font-['JetBrains_Mono'] text-[20px] font-bold text-[#0F172A] leading-tight">420</span>
+<span class="font-['JetBrains_Mono'] text-[10px] text-slate-400 font-medium">lx</span>
+</div>
+<div class="inline-flex items-center justify-center gap-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 py-0.5 font-['JetBrains_Mono'] text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]">check</span>
+<span>PASS</span>
+</div>
+</div>
+<!-- Sensor 2 (S2) -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-3 flex flex-col gap-2 shadow-xs relative">
+<div class="flex items-center justify-between">
+<span class="font-['JetBrains_Mono'] text-[11px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">S2</span>
+<span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+</div>
+<div class="flex flex-col">
+<span class="font-['JetBrains_Mono'] text-[20px] font-bold text-[#0F172A] leading-tight">385</span>
+<span class="font-['JetBrains_Mono'] text-[10px] text-slate-400 font-medium">lx</span>
+</div>
+<div class="inline-flex items-center justify-center gap-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 py-0.5 font-['JetBrains_Mono'] text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]">check</span>
+<span>PASS</span>
+</div>
+</div>
+<!-- Sensor 3 (S3 - Deficit Anomaly) -->
+<div class="bg-white border-2 border-[#F97316] rounded-xl p-3 flex flex-col gap-2 shadow-xs relative bg-orange-50/20">
+<div class="flex items-center justify-between">
+<span class="font-['JetBrains_Mono'] text-[11px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-[#F97316]">S3</span>
+<span class="material-symbols-outlined text-[#F97316] text-[16px]">warning</span>
+</div>
+<div class="flex flex-col">
+<span class="font-['JetBrains_Mono'] text-[20px] font-bold text-[#F97316] leading-tight">180</span>
+<span class="font-['JetBrains_Mono'] text-[10px] text-orange-400 font-medium">lx</span>
+</div>
+<div class="inline-flex items-center justify-center gap-0.5 rounded bg-amber-500 text-white py-0.5 font-['JetBrains_Mono'] text-[10px] font-bold shadow-xs">
+<span>-120 lx</span>
+</div>
+</div>
+</section>
+<!-- Compact Uniformity Micro-Bar -->
+<section class="w-full bg-white border border-[#E2E8F0] rounded-xl p-3.5 flex flex-col gap-2.5 shadow-xs">
+<div class="flex items-center justify-between font-['JetBrains_Mono'] text-xs">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-400 text-[16px]">tune</span>
+<span class="text-slate-500 font-semibold uppercase text-[11px]">Uniformity (Uo)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="text-[14px] font-bold text-[#0F172A]">0.45</span>
+<span class="text-[10px] font-semibold text-amber-700 bg-amber-100 border border-amber-200 px-1.5 py-0.2 rounded">CRIT &lt; 0.60</span>
+</div>
+</div>
+<!-- Visual Segmented Bar with Tick Marks -->
+<div class="relative w-full pt-1 pb-4">
+<!-- Segmented Bar Track -->
+<div class="w-full h-2.5 rounded-full bg-[#E2E8F0] overflow-hidden flex">
+<div class="h-full bg-amber-500 rounded-l-full transition-all" style="width: 45%;"></div>
+<div class="h-full w-0.5 bg-white"></div>
+</div>
+<!-- Tick Marks & Threshold Markers -->
+<div class="absolute inset-x-0 bottom-0 flex justify-between font-['JetBrains_Mono'] text-[10px] text-slate-400">
+<span>0.00</span>
+<span class="text-slate-300">0.30</span>
+<span class="relative font-bold text-emerald-600">
+<span class="absolute -top-3 left-1/2 -translate-x-1/2 w-0.5 h-2 bg-emerald-500"></span>
+            0.60 REF
+          </span>
+<span>1.00</span>
+</div>
+</div>
+</section>
+<!-- Bottom Action Chip / Card -->
+<button class="w-full bg-[#0F172A] hover:bg-slate-800 active:scale-[0.99] text-white rounded-xl p-3.5 shadow-md flex items-center justify-between transition-all group">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
+<span class="material-symbols-outlined text-[20px]">build_circle</span>
+</div>
+<div class="flex flex-col text-left">
+<span class="font-['JetBrains_Mono'] text-[13px] font-bold text-white tracking-tight">Adjust Zone 3 Fixture</span>
+<span class="font-['JetBrains_Mono'] text-[10px] text-slate-400 uppercase tracking-wider">Ballast Driver Offset #4</span>
+</div>
+</div>
+<div class="w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 group-hover:translate-x-0.5 transition-transform">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</div>
+</button>
+</main>
+<!-- Mobile Tab Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/90 backdrop-blur-xl border-t border-[#E2E8F0]" data-active-classes="text-emerald-600 font-semibold">
+<div class="flex items-center justify-around h-16 px-2">
+<a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-colors text-emerald-600 font-semibold" data-path="dashboard" href="#">
+<span class="material-symbols-outlined text-[22px]">grid_view</span>
+<span class="font-['JetBrains_Mono'] text-[10px] uppercase font-bold tracking-wider">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-slate-500 hover:text-slate-800 transition-colors" data-path="rooms" href="#">
+<span class="material-symbols-outlined text-[22px]">meeting_room</span>
+<span class="font-['JetBrains_Mono'] text-[10px] uppercase font-bold tracking-wider">Rooms</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-slate-500 hover:text-slate-800 transition-colors" data-path="compliance" href="#">
+<span class="material-symbols-outlined text-[22px]">fact_check</span>
+<span class="font-['JetBrains_Mono'] text-[10px] uppercase font-bold tracking-wider">Compliance</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-slate-500 hover:text-slate-800 transition-colors" data-path="logs-audit" href="#">
+<span class="material-symbols-outlined text-[22px]">insights</span>
+<span class="font-['JetBrains_Mono'] text-[10px] uppercase font-bold tracking-wider">Audit</span>
+</a>
+</div>
+</nav>
+</body></html>

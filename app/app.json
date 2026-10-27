@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "slug": "photometrix",
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/photometrix-logo.png",
+          "backgroundColor": "#FAF8FF",
+          "imageWidth": 100
+        }
+      ],
+      "expo-build-properties"
+    ],
+    "scheme": "photometrix",
+    "icon": "./assets/images/photometrix-logo.png",
+    "orientation": "portrait",
+    "experiments": {
+      "typedRoutes": true
+    },
+    "version": "1.0.0",
+    "android": {
+      "predictiveBackGestureEnabled": true,
+      "package": "com.photometrix.app",
+      "versionCode": 1
+    },
+    "web": {
+      "output": "single",
+      "favicon": "./assets/images/photometrix-logo.png",
+      "bundler": "metro"
+    },
+    "name": "Photometrix",
+    "userInterfaceStyle": "light"
+  }
+}
